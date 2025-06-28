@@ -28,8 +28,8 @@ import streamlit as st
 # ratings_url = "https://raw.githubusercontent.com/Ashut22/deploy_movie_reco/refs/heads/main/ratings.csv"
 
 # Load CSVs from GitHub
-movies = pd.read_csv("movies.csv")
-ratings = pd.read_csv("ratings.csv")
+movies = pd.read_csv("movies.csv", encoding='utf-8')
+ratings = pd.read_csv("ratings.csv", encoding='utf-8')
 
 st.success("✅ CSVs loaded successfully")
 
