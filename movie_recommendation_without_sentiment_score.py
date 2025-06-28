@@ -5,12 +5,12 @@ from sklearn.feature_extraction.text import CountVectorizer
 import streamlit as st
 
 # GitHub raw URLs
-movies_url = "https://github.com/Ashut22/deploy_movie_reco/blob/main/movies.csv"
-ratings_url = "https://raw.githubusercontent.com/Ashut22/deploy_movie_reco/refs/heads/main/ratings.csv"
+# movies_url = "https://github.com/Ashut22/deploy_movie_reco/blob/main/movies.csv"
+# ratings_url = "https://raw.githubusercontent.com/Ashut22/deploy_movie_reco/refs/heads/main/ratings.csv"
 
 # Load CSVs from GitHub
-movies = pd.read_csv(movies_url)
-ratings = pd.read_csv(ratings_url)
+movies = pd.read_csv(movies.csv)
+ratings = pd.read_csv(ratings.csv)
 
 st.success("✅ CSVs loaded successfully")
 
