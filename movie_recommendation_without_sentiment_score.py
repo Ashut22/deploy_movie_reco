@@ -1,3 +1,27 @@
+import os
+import streamlit as st
+
+st.title("Debugging Movie Recommender")
+
+st.subheader("✅ Files available:")
+st.write(os.listdir())
+
+# Try reading movies.csv first
+try:
+    import pandas as pd
+    movies = pd.read_csv("movies.csv")
+    st.success("✅ movies.csv loaded")
+    st.write(movies.head())
+except Exception as e:
+    st.error(f"❌ Failed to load movies.csv: {e}")
+
+try:
+    ratings = pd.read_csv("ratings.csv")
+    st.success("✅ ratings.csv loaded")
+    st.write(ratings.head())
+except Exception as e:
+    st.error(f"❌ Failed to load ratings.csv: {e}")
+
 import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
