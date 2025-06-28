@@ -73,7 +73,7 @@ def recommend(movie_title):
 st.title("🎬 Movie Recommendation System without Sentiment Filtering")
 movie_list = movies['title'].values
 selected_movie = st.selectbox("Select a movie you like:", ["🔽 Select a movie"] + list(movie_list))
-
+st.write("Selected movie:", selected_movie)
 if selected_movie != "🔽 Select a movie" and st.button("Recommend"):
     recommendations = recommend(selected_movie)
     st.markdown(f"🎬 You liked the movie **{selected_movie}**.")
