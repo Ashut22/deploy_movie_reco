@@ -1,5 +1,24 @@
 import pandas as pd
 import numpy as np
+import os
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.feature_extraction.text import CountVectorizer
+import streamlit as st
+
+st.title("🎬 Movie Recommendation System without Sentiment Filtering")
+
+# Check file existence
+if not os.path.exists("movies.csv"):
+    st.error("❌ 'movies.csv' not found. Please ensure it's in the current directory.")
+    st.stop()
+
+if not os.path.exists("ratings.csv"):
+    st.error("❌ 'ratings.csv' not found. Please ensure it's in the current directory.")
+    st.stop()
+
+
+import pandas as pd
+import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import CountVectorizer
 import streamlit as st
