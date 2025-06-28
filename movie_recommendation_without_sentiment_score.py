@@ -1,26 +1,42 @@
-import os
 import streamlit as st
+import os
+import pandas as pd
 
-st.title("Debugging Movie Recommender")
+st.title("Final Debug – Matrix Check")
 
-st.subheader("✅ Files available:")
-st.write(os.listdir())
+st.write("📄 Files:", os.listdir())
 
-# Try reading movies.csv first
 try:
-    import pandas as pd
     movies = pd.read_csv("movies.csv")
-    st.success("✅ movies.csv loaded")
-    st.write(movies.head())
+    ratings = pd.read_csv("ratings.csv")
+    st.success("✅ CSVs loaded successfully")
 except Exception as e:
-    st.error(f"❌ Failed to load movies.csv: {e}")
+    st.error(f"❌ File loading error: {e}")
+    st.stop()
 
 try:
-    ratings = pd.read_csv("ratings.csv")
-    st.success("✅ ratings.csv loaded")
-    st.write(ratings.head())
+    movie_data = pd.merge(ratings, movies, on='movieId')
+    st.success("✅ Merge success")
 except Exception as e:
-    st.error(f"❌ Failed to load ratings.csv: {e}")
+    st.error(f"❌ Merge error: {e}")
+    st.stop()
+
+try:
+    user_movie_matrix = movie_data.pivot_table(index='userId', columns='title', values='rating')
+    st.success("✅ Pivot table created")
+    st.write("Matrix shape:", user_movie_matrix.shape)
+except Exception as e:
+    st.error(f"❌ Pivot error: {e}")
+    st.stop()
+
+try:
+    from sklearn.metrics.pairwise import cosine_similarity
+    sim = cosine_similarity(user_movie_matrix.T)
+    st.success("✅ Cosine similarity computed")
+except Exception as e:
+    st.error(f"❌ Similarity computation error: {e}")
+    st.stop()
+
 
 import pandas as pd
 import numpy as np
